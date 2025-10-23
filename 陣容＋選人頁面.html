@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>陣容 & 棒次圖</title>
+    <link rel="stylesheet" href="精緻.css">
+    <style>
+        .field { 
+            position: relative; 
+            width: 500px; 
+            height: 500px; 
+            background: url('/static/diamond.png') no-repeat center center; 
+            background-size: contain;
+            margin: auto;
+        }
+        .position {
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+        /* 守備位置座標 */
+        #P { top: 50%; left: 50%; }
+        #C { top: 90%; left: 50%; }
+        #1B { top: 70%; left: 85%; }
+        #2B { top: 60%; left: 60%; }
+        #3B { top: 70%; left: 15%; }
+        #SS { top: 60%; left: 40%; }
+        #LF { top: 30%; left: 15%; }
+        #CF { top: 15%; left: 50%; }
+        #RF { top: 30%; left: 85%; }
+
+        .batting_order {
+            max-width: 400px;
+            margin: 30px auto;
+        }
+        .batting_order div {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>我的陣容 & 棒次圖</h1>
+    <div class="container">
+        <form method="post">
+            <h2>守備站位</h2>
+            <div class="field">
+                {% for pos in ["P","C","1B","2B","3B","SS","LF","CF","RF"] %}
+                    <div class="position" id="{{ pos }}">
+                        <select name="{{ pos }}">
+                            <option value="">--選球員--</option>
+                            {% for p in players %}
+                                <option value="{{ p.name }}" {% if team[pos]==p.name %}selected{% endif %}>
+                                    {{ p.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div>{{ pos }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h2>打序表</h2>
+            <div class="batting_order">
+                {% for i in range(9) %}
+                    <div>
+                        第 {{ i+1 }} 棒：
+                        <select name="bat{{ i+1 }}">
+                            <option value="">--選球員--</option>
+                            {% for p in players %}
+                                <option value="{{ p.name }}" {% if team.bat_order[i]==p.name %}selected{% endif %}>
+                                    {{ p.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit">更新陣容</button>
+            <a href="首頁.html">回首頁</a>
+        </form>
+    </div>
+</body>
+</html>

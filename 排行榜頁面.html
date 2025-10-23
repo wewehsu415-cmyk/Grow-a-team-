@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy CPBL 排行榜</title>
+    <link rel="stylesheet" href=精緻.css>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { margin: auto; border-collapse: collapse; width: 50%; }
+        th, td { border: 1px solid black; padding: 8px; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Fantasy CPBL 排行榜</h1>
+    <table>
+        <tr>
+            <th>玩家</th>
+            <th>總分</th>
+        </tr>
+        {% for r in results %}
+        <tr>
+            <td>{{ r.player }}</td>
+            <td>{{ r.points }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="首頁.html">回首頁</a>
+</body>
+</html>

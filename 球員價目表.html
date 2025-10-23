@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>球員價目表</title>
+    <link rel="stylesheet" href="精緻.css">
+</head>
+<body>
+    <h1>球員價目表</h1>
+    <div class="container">
+        <table border="1" cellpadding="10" cellspacing="0" style="width:80%; margin:auto;">
+            <tr style="background:#3498db; color:white;">
+                <th>球員名稱</th>
+                <th>位置</th>
+                <th>價格</th>
+            </tr>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.position }}</td>
+                <td>{{ player.price }} 分</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="首頁.html">回首頁</a>
+    </div>
+</body>
+</html>
