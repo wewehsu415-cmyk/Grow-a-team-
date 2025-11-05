@@ -1,0 +1,144 @@
+/* ----------------------------------- */
+/* 0. 基本設定 */
+/* ----------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 900px; /* 限制主要內容寬度 */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #0056b3;
+}
+
+/* ----------------------------------- */
+/* 1. 場地和基本佈局 */
+/* ----------------------------------- */
+.field {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    /* 棒球場背景圖 */
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Baseball_positions.svg/1200px-Baseball_positions.svg.png') no-repeat center center;
+    background-size: contain;
+    margin: 20px auto;
+    border: 1px solid #ddd; /* 場地邊框 */
+}
+
+/* ----------------------------------- */
+/* 2. 守備位置樣式 (下拉選單定位在場地上) */
+/* ----------------------------------- */
+.position {
+    /* 使用 CSS 變數來設定位置 */
+    --pos-top: 0%;
+    --pos-left: 0%;
+    position: absolute;
+    top: var(--pos-top); 
+    left: var(--pos-left);
+    /* 保持元素中心對齊 */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0; 
+    z-index: 10;
+}
+
+/* 座標設定 (維持原設計的相對位置) */
+.position[data-pos="P"] { --pos-top: 69%; --pos-left: 50%; }   /* 投手 */
+.position[data-pos="C"] { --pos-top: 89%; --pos-left: 50%; }   /* 捕手 */
+.position[data-pos="1B"] { --pos-top: 65%; --pos-left: 70%; }  /* 一壘手 */
+.position[data-pos="2B"] { --pos-top: 48%; --pos-left: 60%; }  /* 二壘手 */
+.position[data-pos="3B"] { --pos-top: 65%; --pos-left: 30%; }  /* 三壘手 */
+.position[data-pos="SS"] { --pos-top: 48%; --pos-left: 40%; }  /* 游擊手 */
+.position[data-pos="LF"] { --pos-top: 30%; --pos-left: 15%; }  /* 左外野 */
+.position[data-pos="CF"] { --pos-top: 18%; --pos-left: 50%; }  /* 中外野 */
+.position[data-pos="RF"] { --pos-top: 30%; --pos-left: 85%; }  /* 右外野 */
+
+.position select {
+    /* 讓下拉選單在定位後，看起來更像一個可選的標籤 */
+    font-size: 11px; 
+    padding: 1px 3px;
+    border: 1px solid #0056b3;
+    border-radius: 3px;
+    background-color: #e6f0ff; /* 淺藍背景區分 */
+    min-width: 65px; 
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    transition: border 0.3s;
+}
+
+/* ----------------------------------- */
+/* 3. 打序表樣式 */
+/* ----------------------------------- */
+.batting_order {
+    max-width: 400px;
+    margin: 30px auto;
+    display: grid;
+    gap: 8px;
+}
+.batting_order > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed #ccc;
+}
+.batting_order label {
+    font-weight: bold;
+    color: #555;
+}
+.batting_order select {
+    padding: 5px;
+    font-size: 16px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border 0.3s;
+}
+
+/* ----------------------------------- */
+/* 4. 按鈕和錯誤訊息樣式 */
+/* ----------------------------------- */
+button[type="submit"] {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 25px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #28a745; /* 綠色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+}
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* 輔助視覺效果 (錯誤訊息) */
+.error-message {
+    color: #dc3545; /* 紅色 */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #dc3545;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    display: none; /* 預設隱藏 */
+}
+/* 顯示錯誤訊息時 */
+.error-message:not(:empty) {
+    display: block;
+}

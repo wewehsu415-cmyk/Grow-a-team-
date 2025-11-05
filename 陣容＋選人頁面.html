@@ -3,149 +3,46 @@
 <head>
     <meta charset="utf-8">
     <title>陣容 & 棒次圖</title>
-    <link rel="stylesheet" href="精緻.css">
-    <style>
-
-        /* ----------------------------------- */
-        /* 1. 場地和基本佈局 */
-        /* ----------------------------------- */
-        .field {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            /* 請確保 'diamond.png' 文件位於 /static/ 目錄下 */
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Baseball_positions.svg/1200px-Baseball_positions.svg.png') no-repeat center center;
-            background-size: contain;
-            margin: 20px auto;
-            border: 1px solid #aaa; /* 輔助線條，方便觀察場地範圍 */
-        }
-
-        /* ----------------------------------- */
-        /* 2. 守備位置樣式 (下拉選單定位在場地上) */
-        /* ----------------------------------- */
-        .position {
-            /* 使用 CSS 變數來設定位置 */
-            --pos-top: 0%;
-            --pos-left: 0%;
-            position: absolute;
-            top: var(--pos-top); 
-            left: var(--pos-left);
-            /* 保持元素中心對齊 */
-            transform: translate(-50%, -50%);
-            text-align: center;
-            padding: 0; /* 移除內邊距，讓 select 元素佔滿空間 */
-            z-index: 10;
-        }
-
-        /* 座標設定 (維持原設計的相對位置) */
-        .position[data-pos="P"] { --pos-top: 50%; --pos-left: 50%; }   /* 投手 */
-        .position[data-pos="C"] { --pos-top: 90%; --pos-left: 50%; }   /* 捕手 */
-        .position[data-pos="1B"] { --pos-top: 70%; --pos-left: 85%; }  /* 一壘手 */
-        .position[data-pos="2B"] { --pos-top: 60%; --pos-left: 60%; }  /* 二壘手 */
-        .position[data-pos="3B"] { --pos-top: 70%; --pos-left: 15%; }  /* 三壘手 */
-        .position[data-pos="SS"] { --pos-top: 60%; --pos-left: 40%; }  /* 游擊手 */
-        .position[data-pos="LF"] { --pos-top: 30%; --pos-left: 15%; }  /* 左外野 */
-        .position[data-pos="CF"] { --pos-top: 15%; --pos-left: 50%; }  /* 中外野 */
-        .position[data-pos="RF"] { --pos-top: 30%; --pos-left: 85%; }  /* 右外野 */
-
-        .position select {
-            /* 讓下拉選單在定位後，看起來更像一個可選的標籤 */
-            font-size: 11px; 
-            padding: 1px 3px;
-            border: 1px solid #0056b3;
-            border-radius: 3px;
-            background-color: #e6f0ff; /* 淺藍背景區分 */
-            min-width: 65px; 
-            text-align: center;
-        }
-        /* 隱藏位置標籤，只顯示下拉菜單 */
-        .position span {
-            display: none; 
-        }
-        
-        /* ----------------------------------- */
-        /* 3. 打序表樣式 */
-        /* ----------------------------------- */
-        .batting_order {
-            max-width: 400px;
-            margin: 30px auto;
-            display: grid;
-            gap: 8px;
-        }
-        .batting_order > div {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-            border-bottom: 1px dashed #ccc;
-        }
-        .batting_order label {
-            font-weight: bold;
-        }
-        .batting_order select {
-            padding: 5px;
-            font-size: 16px;
-            width: 60%;
-        }
-
-        button[type="submit"] {
-            display: block;
-            margin: 30px auto;
-            padding: 12px 25px;
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button[type="submit"]:hover {
-            background-color: #218838;
-        }
-    </style>
+    <link rel="stylesheet" href="選人頁面精緻.css"> 
 </head>
 <body>
-    <h1>我的陣容 & 棒次圖</h1>
     <div class="container">
-        <form method="post">
+        <h1>我的陣容 & 棒次</h1>
+        
+        <form id="teamForm">
             
             <h2>守備站位 (點擊下拉選單選擇球員)</h2>
             <div class="field">
-                {% for pos in ["P","C","1B","2B","3B","SS","LF","CF","RF"] %}
-                    <div class="position" data-pos="{{ pos }}">
-                        <select name="{{ pos }}">
-                            <option value="">--選球員--</option>
-                            {% for p in players %}
-                                <option value="{{ p.name }}" {% if team.get(pos) == p.name %}selected{% endif %}>
-                                    {{ p.name }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                        </div>
-                {% endfor %}
+                <div class="position" data-pos="P"><select name="P" id="pos_P"><option value="">投手 (P)</option></select></div>
+                <div class="position" data-pos="C"><select name="C" id="pos_C"><option value="">捕手 (C)</option></select></div>
+                <div class="position" data-pos="1B"><select name="1B" id="pos_1B"><option value="">一壘 (1B)</option></select></div>
+                <div class="position" data-pos="2B"><select name="2B" id="pos_2B"><option value="">二壘 (2B)</option></select></div>
+                <div class="position" data-pos="3B"><select name="3B" id="pos_3B"><option value="">三壘 (3B)</option></select></div>
+                <div class="position" data-pos="SS"><select name="SS" id="pos_SS"><option value="">游擊 (SS)</option></select></div>
+                <div class="position" data-pos="LF"><select name="LF" id="pos_LF"><option value="">左外 (LF)</option></select></div>
+                <div class="position" data-pos="CF"><select name="CF" id="pos_CF"><option value="">中外 (CF)</option></select></div>
+                <div class="position" data-pos="RF"><select name="RF" id="pos_RF"><option value="">右外 (RF)</option></select></div>
             </div>
 
             <h2>打序表</h2>
             <div class="batting_order">
-                {% for i in range(9) %}
-                    <div>
-                        <label for="bat_{{ i+1 }}">
-                            第 {{ i+1 }} 棒：
-                        </label>
-                        <select name="bat{{ i+1 }}" id="bat_{{ i+1 }}">
-                            <option value="">--選球員--</option>
-                            {% for p in players %}
-                                <option value="{{ p.name }}" {% if team.bat_order and team.bat_order[i] == p.name %}selected{% endif %}>
-                                    {{ p.name }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                {% endfor %}
+                <div><label for="bat_1">第 1 棒：</label><select name="bat1" id="bat_1"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_2">第 2 棒：</label><select name="bat2" id="bat_2"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_3">第 3 棒：</label><select name="bat3" id="bat_3"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_4">第 4 棒：</label><select name="bat4" id="bat_4"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_5">第 5 棒：</label><select name="bat5" id="bat_5"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_6">第 6 棒：</label><select name="bat6" id="bat_6"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_7">第 7 棒：</label><select name="bat7" id="bat_7"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_8">第 8 棒：</label><select name="bat8" id="bat_8"><option value="">--選球員--</option></select></div>
+                <div><label for="bat_9">第 9 棒：</label><select name="bat9" id="bat_9"><option value="">--選球員--</option></select></div>
             </div>
             
+            <div id="errorMessage" class="error-message"></div>
+
             <button type="submit">更新陣容</button>
         </form>
     </div>
+
+    <script src="選人頁面.js"></script>
 </body>
 </html>
