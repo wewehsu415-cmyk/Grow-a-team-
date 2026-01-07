@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>Fantasy CPBL 排行榜</title>
-    <link rel="stylesheet" href=精緻.css>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        table { margin: auto; border-collapse: collapse; width: 50%; }
-        th, td { border: 1px solid black; padding: 8px; }
-        th { background-color: #f2f2f2; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 玩家排行榜</title>
+    <link rel="stylesheet" href="排行榜精緻.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght+400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Fantasy CPBL 排行榜</h1>
-    <table>
-        <tr>
-            <th>玩家</th>
-            <th>總分</th>
-        </tr>
-        {% for r in results %}
-        <tr>
-            <td>{{ r.player }}</td>
-            <td>{{ r.points }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="index.html">回首頁</a>
+
+    <div class="leaderboard-container">
+        
+        <h1>玩家排行榜</h1>
+        
+        <div class="leaderboard-header">
+            <span>排名</span>
+            <span>玩家名稱</span>
+            <span>分數</span>
+        </div>
+
+        <ul id="leaderboard-list">
+            </ul>
+        
+        <a href="index.html" class="home-button">
+            回首頁
+        </a>
+    </div>
+
+    <script src="排行榜.js"></script>
+
 </body>
 </html>

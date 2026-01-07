@@ -1,0 +1,107 @@
+/* 基礎樣式和字體 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.price-table-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2em;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* 表格樣式 */
+table {
+    width: 100%;
+    border-collapse: collapse; /* 消除雙線邊框 */
+    margin-top: 20px;
+}
+
+/* 表格頭部樣式 */
+thead th {
+    background-color: #3498db; /* 漂亮的藍色背景 */
+    color: white;
+    padding: 15px 10px;
+    text-align: left;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* 表格內容單元格樣式 */
+tbody td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ecf0f1; /* 淺灰色分隔線 */
+    color: #34495e;
+}
+
+/* 懸停效果 (讓互動性更強) */
+tbody tr:hover {
+    background-color: #e8f5ff; /* 淺藍色懸停背景 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 隔行變色 (讓表格更易讀) */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* style.css (在文件末尾添加) */
+
+/* Flexbox 容器：用於置中按鈕 */
+.footer-button-wrapper {
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    padding: 25px 0 10px 0; /* 在表格下方留出足夠空間 */
+    border-top: 1px solid #ecf0f1; /* 增加一條分隔線，讓按鈕區塊更清晰 */
+    margin-top: 20px;
+}
+
+/* 按鈕基礎樣式 (沿用之前的 .button-link) */
+.button-link {
+    display: inline-block;
+    padding: 12px 25px; /* 稍微大一點 */
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px; /* 圓角稍微大一點 */
+    transition: all 0.3s ease;
+}
+
+/* 首頁按鈕的主色調 */
+.button-link.primary {
+    background-color: #2ecc71; /* 綠色 */
+    color: white;
+}
+
+.button-link.primary:hover {
+    background-color: #1c9a40; /* 懸停變深 */
+    transform: translateY(-2px); /* 懸停時稍微上移，增加立體感 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 確保之前針對一般按鈕的樣式依然有效 (如果之前使用了 .button-link) */
+/* .button-link.secondary {
+    background-color: #2ecc71; 
+    ...
+} 
+*/

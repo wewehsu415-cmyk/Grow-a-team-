@@ -1,0 +1,160 @@
+/* 基礎重置與字體 */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6; /* 輕微的灰色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* 排行榜容器 */
+.leaderboard-container {
+    background-color: #ffffff; /* 白色背景卡片 */
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* 柔和的陰影 */
+}
+
+/* 標題 */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    border-bottom: 3px solid #007bff; /* 藍色底線 */
+    padding-bottom: 10px;
+}
+
+/* 列表頭部 */
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #555;
+    background-color: #e9ecef; /* 淺灰色背景 */
+    border-radius: 8px;
+}
+.leaderboard-header span:nth-child(1) { width: 15%; } /* 排名 */
+.leaderboard-header span:nth-child(2) { flex-grow: 1; } /* 玩家名稱 */
+.leaderboard-header span:nth-child(3) { width: 20%; text-align: right; } /* 分數 */
+
+
+/* 玩家列表 */
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 列表項目 (每個玩家) */
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease; /* 平滑過渡效果 */
+}
+
+.player-item:last-child {
+    border-bottom: none;
+}
+
+.player-item:hover {
+    background-color: #f8f9fa; /* 懸停時的淺色背景 */
+    transform: translateX(3px); /* 輕微的移動效果 */
+    cursor: pointer;
+}
+
+/* 排名數字樣式 */
+.rank {
+    font-weight: 600;
+    color: #777;
+    width: 15%;
+}
+
+/* 玩家名稱 */
+.name {
+    flex-grow: 1;
+    color: #333;
+}
+
+/* 分數 */
+.score {
+    font-weight: 700;
+    color: #007bff; /* 藍色分數 */
+    width: 20%;
+    text-align: right;
+}
+
+/* --- 前三名特殊樣式 --- */
+
+/* 排名第一 */
+.player-item:nth-child(1) {
+    background: linear-gradient(to right, #ffeb3b4d, #ffffff); /* 淡淡的金色漸層 */
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+}
+
+.player-item:nth-child(1) .rank {
+    font-size: 1.5em;
+    color: #d4af37; /* 金色 */
+}
+
+/* 排名第二 */
+.player-item:nth-child(2) {
+    background-color: #e0e0e04d; /* 淡淡的銀色背景 */
+    border-left: 5px solid #a8a8a8;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.player-item:nth-child(2) .rank {
+    font-size: 1.3em;
+    color: #a8a8a8; /* 銀色 */
+}
+
+/* 排名第三 */
+.player-item:nth-child(3) {
+    background-color: #cd7f324d; /* 淡淡的青銅色背景 */
+    border-left: 5px solid #cd7f32;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.player-item:nth-child(3) .rank {
+    font-size: 1.1em;
+    color: #cd7f32; /* 青銅色 */
+}
+
+/* --- 回首頁按鈕樣式 --- */
+.home-button {
+    /* 讓按鈕獨佔一行 */
+    display: block; 
+    
+    /* 置中對齊 */
+    width: fit-content; /* 讓按鈕寬度只佔文字大小 */
+    margin: 30px auto 0 auto; /* 上邊距 30px，左右自動置中，底部 0 */
+
+    padding: 10px 15px;
+    background-color: #2ecc71; /* 柔和的綠色背景 */
+    color: white; /* 白色文字 */
+    text-decoration: none; /* 移除超連結底線 */
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-button:hover {
+    background-color: #2b8f29; /* 懸停時顏色加深 */
+    transform: translateY(-1px); /* 輕微上浮效果 */
+}

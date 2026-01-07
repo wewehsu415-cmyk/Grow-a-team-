@@ -47,9 +47,11 @@ h1, h2 {
     left: var(--pos-left);
     /* 保持元素中心對齊 */
     transform: translate(-50%, -50%);
-    text-align: center;
-    padding: 0; 
     z-index: 10;
+    display: flex;             /* 啟用彈性盒模型 */
+    flex-direction: column;    /* 設定為垂直方向 (上到下) */
+    align-items: center;       /* 讓選單和分數標籤水平置中對齊 */
+    width: auto;               /* 寬度自動，避免太寬擋到別人 */
 }
 
 /* 座標設定 (維持原設計的相對位置) */
@@ -141,4 +143,201 @@ button[type="submit"]:hover {
 /* 顯示錯誤訊息時 */
 .error-message:not(:empty) {
     display: block;
+}
+.button-link {
+    /* 按鈕基礎樣式 */
+    display: inline-block; /* 讓它可以設定寬度和高度，並跟文字對齊 */
+    padding: 10px 20px;
+    margin-top: 15px; /* 稍微和表格分開 */
+    
+    /* 文字樣式 */
+    color: white; /* 文字顏色 */
+    font-weight: bold;
+    text-decoration: none; /* 移除超連結預設的底線 */
+    text-align: center;
+    
+    /* 外觀樣式 */
+    background-color: #2ecc71; /* 綠色背景 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /* 顯示手型指標 */
+    transition: background-color 0.3s ease; /* 平滑過渡效果 */
+}
+
+/* 懸停效果 */
+.button-link:hover {
+    background-color: #27ae60; /* 懸停時變深 */
+}
+
+/* 次要按鈕樣式 (範例) */
+.button-link.secondary {
+    background-color: #3498db; /* 藍色背景 */
+}
+
+.button-link.secondary:hover {
+    background-color: #2980b9;
+}
+/* 讓按鈕的父容器置中其所有行內內容 */
+.button-wrapper {
+    /* 關鍵步驟：讓容器中的文本和行內元素置中 */
+    text-align: center; 
+    
+    /* 確保容器佔滿所需寬度 */
+    width: 100%; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.score-board {
+    text-align: center;
+    background-color: #0056b3;
+    color: white;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    width: 80%;
+}
+
+#totalScore {
+    color: #ffeb3b; /* 黃色數字比較顯眼 */
+    font-size: 32px;
+    margin: 0 5px;
+}
+.pos-score {
+    font-size: 12px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 2px; /* 與上方選單的距離 */
+    display: inline-block; /* 讓背景只包覆文字 */
+}
+
+/* 打序表的分數佈局調整 */
+.batting_order > div {
+    /* 修改原本的 flex 設定，確保對齊 */
+    align-items: flex-start; /* 改為靠上對齊，因為右邊變高了 */
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column; /* 垂直排列：選單在上，分數在下 */
+    width: 70%; /* 繼承原本 select 的寬度概念 */
+}
+
+.select-group select {
+    width: 100%; /* 讓選單佔滿 group 的寬度 */
+}
+
+/* 打序列表的分數文字 */
+.bat-score {
+    font-size: 13px;
+    color: #666; /* 灰色 */
+    text-align: right; /* 靠右對齊 */
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+/* ----------------------------------- */
+/* 新增：投手陣容樣式 */
+/* ----------------------------------- */
+.pitcher_section {
+    display: flex;
+    justify-content: space-between; /* 左右分欄 */
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.pitcher_column {
+    flex: 1; /* 左右等寬 */
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.pitcher_column h3 {
+    text-align: center;
+    margin-top: 0;
+    color: #444;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.pitcher_column > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* 對齊頂部 */
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+}
+
+.pitcher_column label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 6px; /* 讓文字稍微對齊選單中間 */
+}
+
+/* 投手的分數樣式 (沿用之前的設計邏輯) */
+.pitcher-score {
+    font-size: 13px;
+    color: #28a745; /* 改用綠色區分投手分數 */
+    text-align: right;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+/* 響應式：手機版變垂直排列 */
+@media (max-width: 600px) {
+    .pitcher_section {
+        flex-direction: column;
+    }
+}
+
+/* 修改：計分板樣式 */
+.score-board {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* 拉開總分和預算的距離 */
+    background-color: #0056b3;
+    color: white;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    width: 80%;
+}
+
+.board-item {
+    min-width: 200px;
+}
+
+#totalScore {
+    color: #ffeb3b; /* 黃色數字 */
+}
+
+#remainingBudget {
+    color: #00ffea; /* 青色數字表示錢 */
+}
+
+/* 當預算不足時的樣式 (JS 會切換這個 class) */
+.over-budget {
+    color: #ff4d4d !important; /* 紅色警告 */
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }

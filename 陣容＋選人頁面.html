@@ -9,40 +9,215 @@
     <div class="container">
         <h1>我的陣容 & 棒次</h1>
         
+        <div class="score-board">
+            目前的陣容總分：<span id="totalScore">0</span> 分
+        </div>
+
+        <div class="score-board">
+            <div class="board-item">
+                剩餘薪資：<span id="remainingBudget">200</span> 元
+            </div>
+        </div>
+        
         <form id="teamForm">
             
-            <h2>守備站位 (點擊下拉選單選擇球員)</h2>
+            <h2>守備站位</h2>
             <div class="field">
-                <div class="position" data-pos="P"><select name="P" id="pos_P"><option value="">投手 (P)</option></select></div>
-                <div class="position" data-pos="C"><select name="C" id="pos_C"><option value="">捕手 (C)</option></select></div>
-                <div class="position" data-pos="1B"><select name="1B" id="pos_1B"><option value="">一壘 (1B)</option></select></div>
-                <div class="position" data-pos="2B"><select name="2B" id="pos_2B"><option value="">二壘 (2B)</option></select></div>
-                <div class="position" data-pos="3B"><select name="3B" id="pos_3B"><option value="">三壘 (3B)</option></select></div>
-                <div class="position" data-pos="SS"><select name="SS" id="pos_SS"><option value="">游擊 (SS)</option></select></div>
-                <div class="position" data-pos="LF"><select name="LF" id="pos_LF"><option value="">左外 (LF)</option></select></div>
-                <div class="position" data-pos="CF"><select name="CF" id="pos_CF"><option value="">中外 (CF)</option></select></div>
-                <div class="position" data-pos="RF"><select name="RF" id="pos_RF"><option value="">右外 (RF)</option></select></div>
+                <div class="position" data-pos="C">
+                    <select name="C" id="pos_C"><option value="">捕手 (C)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="1B">
+                    <select name="1B" id="pos_1B"><option value="">一壘 (1B)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="2B">
+                    <select name="2B" id="pos_2B"><option value="">二壘 (2B)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="3B">
+                    <select name="3B" id="pos_3B"><option value="">三壘 (3B)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="SS">
+                    <select name="SS" id="pos_SS"><option value="">游擊 (SS)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="LF">
+                    <select name="LF" id="pos_LF"><option value="">左外 (LF)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="CF">
+                    <select name="CF" id="pos_CF"><option value="">中外 (CF)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
+                <div class="position" data-pos="RF">
+                    <select name="RF" id="pos_RF"><option value="">右外 (RF)</option></select>
+                    <div class="pos-score">0分</div>
+                </div>
             </div>
 
             <h2>打序表</h2>
             <div class="batting_order">
-                <div><label for="bat_1">第 1 棒：</label><select name="bat1" id="bat_1"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_2">第 2 棒：</label><select name="bat2" id="bat_2"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_3">第 3 棒：</label><select name="bat3" id="bat_3"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_4">第 4 棒：</label><select name="bat4" id="bat_4"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_5">第 5 棒：</label><select name="bat5" id="bat_5"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_6">第 6 棒：</label><select name="bat6" id="bat_6"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_7">第 7 棒：</label><select name="bat7" id="bat_7"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_8">第 8 棒：</label><select name="bat8" id="bat_8"><option value="">--選球員--</option></select></div>
-                <div><label for="bat_9">第 9 棒：</label><select name="bat9" id="bat_9"><option value="">--選球員--</option></select></div>
+                <div>
+                    <label for="bat_1">第 1 棒：</label>
+                    <div class="select-group">
+                        <select name="bat1" id="bat_1"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_2">第 2 棒：</label>
+                    <div class="select-group">
+                        <select name="bat2" id="bat_2"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_3">第 3 棒：</label>
+                    <div class="select-group">
+                        <select name="bat3" id="bat_3"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_4">第 4 棒：</label>
+                    <div class="select-group">
+                        <select name="bat4" id="bat_4"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_5">第 5 棒：</label>
+                    <div class="select-group">
+                        <select name="bat5" id="bat_5"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_6">第 6 棒：</label>
+                    <div class="select-group">
+                        <select name="bat6" id="bat_6"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_7">第 7 棒：</label>
+                    <div class="select-group">
+                        <select name="bat7" id="bat_7"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_8">第 8 棒：</label>
+                    <div class="select-group">
+                        <select name="bat8" id="bat_8"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="bat_9">第 9 棒：</label>
+                    <div class="select-group">
+                        <select name="bat9" id="bat_9"><option value="" data-score="0">--選球員--</option></select>
+                        <div class="bat-score">0分</div>
+                    </div>
+                </div>
             </div>
             
             <div id="errorMessage" class="error-message"></div>
+            <h2>投手陣容</h2>
+            <div class="pitcher_section">
+                
+                <div class="pitcher_column">
+                    <h3>先發輪值</h3>
+                    <div>
+                        <label>一號先發：</label>
+                        <div class="select-group">
+                            <select name="sp_1" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>二號先發：</label>
+                        <div class="select-group">
+                            <select name="sp_2" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>三號先發：</label>
+                        <div class="select-group">
+                            <select name="sp_3" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>四號先發：</label>
+                        <div class="select-group">
+                            <select name="sp_4" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>五號先發：</label>
+                        <div class="select-group">
+                            <select name="sp_5" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                </div>
 
-            <button type="submit">儲存</button>
+                <div class="pitcher_column">
+                    <h3>牛棚戰力</h3>
+                    <div>
+                        <label>終結者 (9局)：</label>
+                        <div class="select-group">
+                            <select name="rp_closer" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>佈局投手 (8局)：</label>
+                        <div class="select-group">
+                            <select name="rp_setup" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>中繼投手 (5-7局)：</label>
+                        <div class="select-group">
+                            <select name="rp_middle" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>長中繼：</label>
+                        <div class="select-group">
+                            <select name="rp_long" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>敗戰處理：</label>
+                        <div class="select-group">
+                            <select name="rp_mopup" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>救援投手：</label>
+                        <div class="select-group">
+                            <select name="rp_rescue" class="pitcher-select"><option value="" data-score="0">--選球員--</option></select>
+                            <div class="pitcher-score">0分</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
-
+    <div class="button-wrapper">
+        <a href="index.html" class="button-link">首頁</a>
+    </div>
     <script src="選人頁面.js"></script>
 </body>
 </html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夢幻棒球聯盟 - 遊戲規則</title>
+    <style>
+        :root {
+            --primary-color: #004d40; /* 深綠色，棒球場風格 */
+            --accent-color: #d32f2f;  /* 紅色，縫線風格 */
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --positive-score: #2e7d32;
+            --negative-score: #c62828;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+            margin-top: 0;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .grid-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lists */
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Chips / Badges */
+        .chip {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: white;
+            margin-right: 5px;
+        }
+        .chip-wc { background-color: #ff9800; }
+        .chip-tc { background-color: #9c27b0; }
+
+        /* Scoring Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-val {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .plus { color: var(--positive-score); }
+        .minus { color: var(--negative-score); }
+        
+        /* --- 回首頁按鈕樣式 --- */
+        .home-button {
+            /* 讓按鈕獨佔一行 */
+            display: block; 
+            
+            /* 置中對齊 */
+            width: fit-content; /* 讓按鈕寬度只佔文字大小 */
+            margin: 30px auto 0 auto; /* 上邊距 30px，左右自動置中，底部 0 */
+
+            padding: 10px 15px;
+            background-color: #2ecc71; /* 柔和的綠色背景 */
+            color: white; /* 白色文字 */
+            text-decoration: none; /* 移除超連結底線 */
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+            background-color: #2b8f29; /* 懸停時顏色加深 */
+            transform: translateY(-1px); /* 輕微上浮效果 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>遊戲規則</h1>
+    </header>
+
+    <section class="section-card">
+        <h2>隊伍與預算</h2>
+        <ul>
+            <li><strong>球員總數：</strong>玩家需選滿 <strong>28人</strong>。</li>
+            <li><strong>總預算：</strong>全隊薪資上限 <strong>100元</strong>。</li>
+        </ul>
+    </section>
+
+    <section class="section-card">
+        <h2>首發陣容與調度</h2>
+        <div class="grid-box">
+            <div>
+                <h3>每週陣容</h3>
+                <ul>
+                    <li><strong>守備球員：</strong>9 人</li>
+                    <li><strong>先發打序：</strong>9 人</li>
+                    <li><strong>先發輪值：</strong>5 人</li>
+                    <li><strong>牛棚投手：</strong>6 人</li>
+                </ul>
+            </div>
+            <div>
+                <h3>交易機制</h3>
+                <ul>
+                    <li><strong>交易名額：</strong>每週僅有 <strong>1個</strong> 免費換人名額。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>特殊機制 </h2>
+        
+        <h3>🏅 前四棒機制</h3>
+        <p>打序的前四棒 <strong>x2 倍</strong>。</p>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <h3>🃏 特殊道具</h3>
+        <p>借鏡 FPL 系統，本聯盟提供以下特殊道具（每季限量）：</p>
+        
+        <div style="margin-bottom: 15px;">
+            <span class="chip chip-wc">Wildcard</span>
+            <strong>無限重組：</strong>
+            該週可無限制更換球員，不扣積分。（每個半季限用一次）
+        </div>
+        
+        <div>
+            <span class="chip chip-tc">Triple Captain</span>
+            <strong>三倍前四棒：</strong>
+            讓打序前四棒兩倍變為 <strong>x3 倍</strong>。（全季限用一次）
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>📊 積分規則</h2>
+        
+        <div class="grid-box">
+            <div>
+                <h3 style="text-align: center; color: #333;">🏏 打者 </h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th style="text-align: right;">積分</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>全壘打</td><td class="score-val plus">+10</td></tr>
+                        <tr><td>三壘安打</td><td class="score-val plus">+7</td></tr>
+                        <tr><td>二壘安打</td><td class="score-val plus">+5</td></tr>
+                        <tr><td>安打</td><td class="score-val plus">+3</td></tr>
+                        <tr><td>盜壘</td><td class="score-val plus">+5</td></tr>
+                        <tr><td>打點</td><td class="score-val plus">+2</td></tr>
+                        <tr><td>得分</td><td class="score-val plus">+2</td></tr>
+                        <tr><td>守備美技</td><td class="score-val plus">+2</td></tr>
+                        <tr><td>被三振</td><td class="score-val minus">−3</td></tr>
+                        <tr><td>滾地球出局</td><td class="score-val minus">−3</td></tr>
+                        <tr><td>高飛球出局</td><td class="score-val minus">−3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3 style="text-align: center; color: #333;">⚾ 投手 </h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th style="text-align: right;">積分</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>先發勝投 </td><td class="score-val plus">+6</td></tr>
+                        <tr><td>救援/中繼成功 </td><td class="score-val plus">+5</td></tr>
+                        <tr><td>製造雙殺 </td><td class="score-val plus">+5</td></tr>
+                        <tr><td>三上三下 </td><td class="score-val plus">+3</td></tr>
+                        <tr><td>單局無失分 </td><td class="score-val plus">+2</td></tr>
+                        <tr><td>奪三振 </td><td class="score-val plus">+1</td></tr>
+                        <tr><td>自責分 </td><td class="score-val minus">−3 / 分</td></tr>
+                        <tr><td>先發敗投 </td><td class="score-val minus">−5</td></tr>
+                        <tr><td>救援失敗 </td><td class="score-val minus">−5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</div>
+<a href="index.html" class="home-button">
+    回首頁
+</a>
+</body>
+</html>

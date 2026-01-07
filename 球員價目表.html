@@ -1,29 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>球員價目表</title>
-    <link rel="stylesheet" href="精緻.css">
+    <link rel="stylesheet" href="球員價目表精緻.css">
 </head>
 <body>
-    <h1>球員價目表</h1>
-    <div class="container">
-        <table border="1" cellpadding="10" cellspacing="0" style="width:80%; margin:auto;">
-            <tr style="background:#3498db; color:white;">
-                <th>球員名稱</th>
-                <th>位置</th>
-                <th>價格</th>
-            </tr>
-            {% for player in players %}
-            <tr>
-                <td>{{ player.name }}</td>
-                <td>{{ player.position }}</td>
-                <td>{{ player.price }} 分</td>
-            </tr>
-            {% endfor %}
+    <div class="price-table-container">
+        <h1>球員價目表</h1>
+
+        <div class="filter-controls">
+            <label for="price-filter">依價格分類：</label>
+            <select id="price-filter" onchange="filterPlayers(this.value)">
+                <option value="all">所有球員</option>
+                <option value="high">高價 (≥ 10M)</option>
+                <option value="medium">中價 (7M - 9M)</option>
+                <option value="low">低價 (4M - 6M)</option>
+            </select>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>球員姓名</th>
+                    <th>位置</th>
+                    <th>價格</th>
+                    <th>所屬球隊</th>
+                </tr>
+            </thead>
+            <tbody id="player-data">
+            </tbody>
         </table>
-        <br>
-        <a href="index.html">回首頁</a>
+        <div class="footer-button-wrapper">
+            <a href="index.html" class="button-link primary">
+                回首頁
+            </a>
+        </div>
     </div>
+    <script src="球員價目表.js"></script>
 </body>
 </html>
